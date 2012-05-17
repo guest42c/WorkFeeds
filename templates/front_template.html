@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+    
+    <head>
+        <title>WorkFeeds</title>
+        <link rel="stylesheet" href="style.css" />
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    </head>
+    
+    <body>
+        
+        <div id="wrapper">
+            
+            <div id="header">
+                <h1>WorkFeeds</h1>
+                <br />
+                <form method="post">
+                    <input class="search" type="text" value="#dev"><input type="submit" value="Filtrar">
+		</form>
+            </div>
+            
+            <div id="body">
+                
+                <div id="left-panel">
+                    
+                    <div class="pnl-header">
+                        <h2>Recentes</h2>
+                    </div>
+                    {% for tweet in tweets %}
+			<ul class="twitbox">
+				<li class="twit">
+					<img src="{{tweet.profile_img}}"/><div class="content"><a href="{{tweet.profile_link}}">{{tweet.from_user_name}}</a>
+					<div class="description">{{tweet.text}}</div></div>
+					<div class="announcement_time">{{tweet.created_at}}</div>
+				</li>                        
+		        </ul>
+		    {% endfor %}                    
+                </div>
+                
+                <div id="right-panel">
+                    
+                    <div class="pnl-header">
+                        <h2>Populares</h2>
+                    </div>
+                    
+                    <ul class="twitbox">
+                        
+                                    
+                    </ul>
+                    
+                </div>
+                
+                <div id="advertisements">
+                    
+                    <h2>Anuncie sua vaga aqui:</h2>
+                    
+                    <form method="post">
+                        <textarea class="anuncio" style="width:300px; height: 90px; " name="anuncio" ></textarea>
+                        <br>
+                        <input class="button" type="submit" value="Enviar">
+                    </form>
+                    
+                </div>
+                
+            </div>                 
+            
+        </div>
+        
+        <div class="clear"></div>
+        
+        <div id="footer">
+            Desenvolvido por <a href="http://samuraidev.com.br">SamuraiDev</a>
+        </div>
+        
+    </body>
+    
+</html>

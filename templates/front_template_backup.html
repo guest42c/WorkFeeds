@@ -6,12 +6,13 @@
         <link rel="stylesheet" href="style.css" />
         <link href='http://fonts.googleapis.com/css?family=Fredoka+One' rel='stylesheet' type='text/css' />
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	
+	<script type="text/javascript" src="scripts/jquery-1.7.2.min.js"></script>
+	<script src="scripts/mustache.js"></script>
+	<script src="scripts/json2.js"></script> 
     </head>
     
     <body>
-        <script src="http://github.com/janl/mustache.js/raw/master/mustache.js"></script>
-	
+        
         <div id="wrapper">
             
             <div id="header">
@@ -33,21 +34,27 @@
                     <ul class="twitbox">
 
 			<script>
-		var data,template,html;
-		data = {
-			announcer_image: "images/samurai01.png",
-			announcer_link: "https://twitter.com/#!/samuraidevblog",
-			announcer_name: "Samurai Dev",
-			announcement: "Instalando Node.js no Fedora a partir do código fonte - SamuraiDev http://migre.me/8TRsw",
-			announcement_time: "1 hour ago",
-		};
-		template = '<li class="twit"><img src="{{announcer_image}}"/> <div class="content"><a href="{{announcer_link}}">{{announcer_name}}</a><div class="description">{{announcement}}</div></div><div class="{{announcement_time}}">1 hour ago</div></li>'
+				var data,template,html;
+				data2 = {
+					announcer_image: "images/samurai01.png",
+					announcer_link: "https://twitter.com/#!/samuraidevblog",
+					announcer_name: "Samurai Dev",
+					announcement: "Instalando Node.js no Fedora a partir do código fonte - SamuraiDev http://migre.me/8TRsw",
+					announcement_time: "1 hour ago",
+				};
 
-		html = Mustache.to_html(template, data);
-		document.write(html);		
-	</script>
-			
-                        <!--<li class="twit">
+				template = '<li class="twit"><img src="{{announcer_image}}"/> <div class="content"><a href="{{announcer_link}}">{{announcer_name}}</a><div class="description">{{announcement}}</div></div><div class="{{announcement_time}}">1 hour ago</div></li>'
+
+				html = Mustache.to_html(template, data2);
+				document.write(html);	
+
+				$.getJSON("http://search.twitter.com/search.json?q=%40twitterapi",
+						function(data){
+							alert("success");
+							document.write(data);
+				      		});    			
+			</script>
+			<!--<li class="twit">
                             <img src="images/samurai01.png" />
                             <div class="content">
                                 <a href="https://twitter.com/#!/samuraidevblog">SamuraiDev</a>
@@ -123,6 +130,12 @@
             
         </div>
         
+	<div id=”twitter_update_list”>TWITS AQUI</div>
+	<script type=”text/javascript” src=”http://twitter.com/javascripts/blogger.js”>
+	</script>
+	<script type=”text/javascript” src=”http://twitter.com/statuses/user_timeline/twitterapi.json?callback=twitterCallback2&count=1″>
+	</script>
+
         <div class="clear"></div>
         
         <div id="footer">
