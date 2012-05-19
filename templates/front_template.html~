@@ -3,7 +3,7 @@
     
     <head>
         <title>WorkFeeds</title>
-        <link rel="stylesheet" href="stylesheets/style.css" />
+        <link rel="stylesheet" href="stylesheets/main.css" />
 	<link href='http://fonts.googleapis.com/css?family=Fredoka+One' rel='stylesheet' type='text/css' />
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     </head>
@@ -16,7 +16,7 @@
                 <h1>WorkFeeds</h1>
                 <br />
                 <form method="post">
-                    <input class="search" name="filtro" type="text" value="{{filtro}}"><input type="submit" value="Filtrar">
+                    <input class="search" name="filtro" type="text" value="#dev"><input type="submit" value="Filtrar">
 		</form>
             </div>
             
@@ -31,17 +31,17 @@
                     <ul class="twitbox">
                     {% for tweet in tweets %}
 			
-    				<li class="twit">
-    					<img src="{{tweet.profile_img}}"/>
-    					<div class="content">
-    						<a href="{{tweet.profile_link}}">{{tweet.from_user_name}}</a>
-    						<div class="description">{{tweet.text|safe}}</div>
-    					</div>
-    					<div class="announcement_time">{{tweet.created_at}}</div>
-    				</li>                        
-    		        
-    		        {% endfor %}             
-		            </ul>       
+				<li class="twit">
+					<img src="{{tweet.profile_img}}"/>
+					<div class="content">
+						<a href="{{tweet.profile_link}}">{{tweet.from_user_name}}</a>
+						<div class="description">{{tweet.text}}</div>
+					</div>
+					<div class="announcement_time">{{tweet.created_at}}</div>
+				</li>                        
+		        
+		    {% endfor %}             
+		    </ul>       
                 </div>
                 
                 <div id="right-panel">
