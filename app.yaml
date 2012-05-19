@@ -5,8 +5,11 @@ api_version: 1
 threadsafe: true
 
 handlers:
+- url: /stylesheets
+  static_dir: static/stylesheets
 - url: /.*
   script: workfeeds.app
+
 libraries:
 - name: jinja2
   version: latest
