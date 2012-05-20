@@ -16,8 +16,10 @@
                 <h1>WorkFeeds</h1>
                 <br />
                 <form method="post">
+
                     <input class="search" name="filtro" type="text" value="{{filtro}}"><input type="submit" value="Filtrar">
-		</form>
+
+        		</form>
             </div>
             
             <div id="body">
@@ -30,8 +32,7 @@
 		    
                     <ul class="twitbox">
                     {% for tweet in tweets %}
-			
-    				<li class="twit">
+					<li class="twit">
     					<img src="{{tweet.profile_img}}"/>
     					<div class="content">
     						<a href="{{tweet.profile_link}}">{{tweet.from_user_name}}</a>
