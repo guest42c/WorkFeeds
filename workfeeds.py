@@ -14,8 +14,6 @@ jinja_env = jinja2.Environment(loader = jinja2.FileSystemLoader(template_dir),
 logger = logging.getLogger('tweetvagas_application')
 logger.setLevel(logging.DEBUG)
 
-MAX_TWEETS = 3
-
 class Tweet():
 	def __init__(self, created_at,from_user_name,profile_img,text,user):
 		self.created_at = created_at
@@ -32,7 +30,17 @@ def find_users(atext):
 	users_list = re.findall('@([A-Za-z0-9_]+)',atext)
 	return users_list
 
+
+
 class Handler(webapp2.RequestHandler):
+	def __init__(self, request, response):
+		self.initialize(request, response)
+		maxtweets = self.request.cookies.get("max_tweets")
+		if maxtweets:
+			self.max_tweets = int(maxtweets)
+		else:
+			self.max_tweets = 3
+
 	def write(self, *a, **kw):
 	    self.response.out.write(*a, **kw)
 
@@ -56,6 +64,7 @@ class Handler(webapp2.RequestHandler):
 			j = json.loads(c)
 			tweets = []
 			i = 0
+			logger.info("Numero de resultados no JSON: %s" % len(j['results']))
 			for c in j['results']:
 				created_at = c['created_at']
 				from_user_name = c['from_user_name']
@@ -70,28 +79,36 @@ class Handler(webapp2.RequestHandler):
 				user = c['from_user']
 				tweet = Tweet(created_at,from_user_name,profile_img,text,user)
 				tweets.append(tweet)
-				if i<MAX_TWEETS:
-					i = i + 1
-				else:
+				i = i + 1
+				if i >= self.max_tweets:
 					break
 		except:
 			tweets = []
+		logger.info("Numero maximo de tweets: %s" % self.max_tweets)
+		logger.info("Tweets exibidos: %s" % len(tweets))
 		return tweets
+
+	def more_tweets(self):
+		self.max_tweets = int(self.request.cookies.get("max_tweets")) + 10		
+		self.response.headers.add_header('Set-Cookie','max_tweets=%s; Path=/' % self.max_tweets)
 
 class MainPage(Handler):
 	def write_form(self, newers, filtro = ''):
-	    self.render("front_template.html", tweets = newers, filtro = filtro)
+		self.render("front_template.html", tweets = newers, filtro = filtro)
 
 	def get(self):
-	    tweets = self.retrieve_newers()
-	    self.write_form(tweets)
+		self.response.headers.add_header('Set-Cookie','max_tweets=%s; Path=/' % 3)
+		tweets = self.retrieve_newers()
+		self.write_form(tweets)
 
 	def post(self):
-	    filtro = self.request.get('filtro')
-	    if filtro:
-	    	tweets = self.retrieve_newers(filtro.split(" "))
-	    else:
-	    	tweets = self.retrieve_newers()
-	    self.write_form(tweets,filtro)
+		if 'carregar_mais' in self.request.POST:
+			self.more_tweets()
+		filtro = self.request.get('filtro')
+		if filtro:
+			tweets = self.retrieve_newers(filtro.split(" "))
+		else:
+			tweets = self.retrieve_newers()
+		self.write_form(tweets,filtro)
 
 app = webapp2.WSGIApplication([('/', MainPage)], debug = True)

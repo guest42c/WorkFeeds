@@ -29,8 +29,9 @@
                     <div class="pnl-header">
                         <h2>Recentes</h2>
                     </div>
-		    
+		      
                     <ul class="twitbox">
+
                     {% for tweet in tweets %}
 					<li class="twit">
     					<img src="{{tweet.profile_img}}"/>
@@ -42,7 +43,11 @@
     				</li>                        
     		        
     		        {% endfor %}             
-		            </ul>       
+		            </ul>
+                    <form method="post">
+                        <input type="submit" name="carregar_mais" value="Carregar Mais">
+                    </form>
+
                 </div>
                 
                 <div id="right-panel">
