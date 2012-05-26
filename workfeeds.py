@@ -30,7 +30,7 @@ def find_users(atext):
 	users_list = re.findall('@([A-Za-z0-9_]+)',atext)
 	return users_list
 
-
+MAX_TWEETS = 5
 
 class Handler(webapp2.RequestHandler):
 	def __init__(self, request, response):
@@ -39,7 +39,7 @@ class Handler(webapp2.RequestHandler):
 		if maxtweets:
 			self.max_tweets = int(maxtweets)
 		else:
-			self.max_tweets = 3
+			self.max_tweets = MAX_TWEETS
 
 	def write(self, *a, **kw):
 	    self.response.out.write(*a, **kw)
@@ -98,7 +98,7 @@ class MainPage(Handler):
 		self.render("front_template.html", tweets = newers, filtro = filtro)
 
 	def get(self):
-		self.response.headers.add_header('Set-Cookie','max_tweets=%s; Path=/' % 3)
+		self.response.headers.add_header('Set-Cookie','max_tweets=%s; Path=/' % MAX_TWEETS)
 		tweets = self.retrieve_newers()
 		self.write_form(tweets)
 
