@@ -53,13 +53,14 @@ class Handler(webapp2.RequestHandler):
 
 	def retrieve_newers(self, t_query = None):
 		try:		
-			url = 'http://search.twitter.com/search.json?q=from:mettaonline&rpp=1500'
+			url = 'http://search.twitter.com/search.json?q=from:mettaonline'
 			if t_query:
 				for item in t_query:
 					url = url + "%20AND%20" + str(item)
 					logger.info(item)
 					logger.info(url)
-			p = urllib2.urlopen(url)
+			result_size = '&rpp=1500'
+			p = urllib2.urlopen(url + result_size)
 			c = p.read()
 			j = json.loads(c)
 			tweets = []

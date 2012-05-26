@@ -150,7 +150,7 @@ html, body {
   -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=3, Direction=135, Color='#aaaaaa')";
   filter: progid:DXImageTransform.Microsoft.Shadow(Strength=3, Direction=135, Color='#aaaaaa');
   float: left;
-  width: 33%;
+  width: 66%;
   border: 5px solid #27c8fd; }
 
 #right-panel {
@@ -164,7 +164,7 @@ html, body {
   -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=3, Direction=135, Color='#aaaaaa')";
   filter: progid:DXImageTransform.Microsoft.Shadow(Strength=3, Direction=135, Color='#aaaaaa');
   float: left;
-  width: 33%;
+  width: 0%;
   border: 5px solid #27c8fd;
   margin-left: 2%; }
 
@@ -215,11 +215,12 @@ html, body {
 
 .twitbox {
   list-style: none;
-  padding: 5px;
+  padding: 15px;
   font-family: 'Verdana'; }
 
 .twitbox li {
-  color: #333333; }
+  color: #333333;
+  padding: 10px; }
 
 .twit {
   border-bottom: 1px dashed #0084b4;
@@ -236,17 +237,16 @@ html, body {
   color: #0084b4; }
 
 .content {
-  padding: 5px;
-  float: left; }
+  padding-left: 10px; }
 
 .twitbox li a:hover {
-  position: relative;
   text-decoration: underline; }
 
 .twhen {
+  float: right;
+  right: 0px;
+  bottom: 0px;
   color: #999999;
   font-family: georgia;
   font-size: 14px;
-  font-style: italic;
-  padding-top: 5px;
-  clear: both; }
+  font-style: italic; }

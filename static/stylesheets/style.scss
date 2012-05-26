@@ -42,8 +42,8 @@ html, body { height: 100%; font-family: 'Fredoka One', cursive; }
 #footer a { color: $white; text-decoration: underline; }
 
 .search { font-size: 1.2em; font-weight: bold; }
-#left-panel { @include panel(left, 33%); }
-#right-panel { @include panel(left, 33%); margin-left: 2%; }
+#left-panel { @include panel(left, 66%); }
+#right-panel { @include panel(left, 00%); margin-left: 2%; }
 #search-panel { @include panel(left, 66%); }
 #advertisements { @include panel(left, 26%); background-color: $main-color; color: $white; margin-left: 2%; }
 
@@ -52,11 +52,11 @@ html, body { height: 100%; font-family: 'Fredoka One', cursive; }
 .pnl-header { @include default-bg; padding-bottom: 5px; text-align: center; }
 .button { background-color: $white !important; color: $second-color !important; }
 
-.twitbox { list-style: none; padding: 5px; font-family: 'Verdana'; }
-.twitbox li { color: $text-color; }
+.twitbox { list-style: none; padding: 15px; font-family: 'Verdana'; }
+.twitbox li { color: $text-color; padding: 100px; }
 .twit { border-bottom: 1px dashed $second-color; margin-top: 5px; }
 .twit > img { width: 50px; height: 50px; float: left; }
 .twit a { font-size: 20px; font-weight: bold; color: $second-color; }
-.content { padding: 5px; float: left; }
+.content { padding-left: 10px; }
 .twitbox li a:hover { text-decoration: underline; }
-.twhen { color: #999999; font-family: georgia; font-size: 14px; font-style: italic; padding-top: 5px; clear: both; }
+.twhen { float: right; right: 0px; bottom: 0px; color: #999999; font-family: georgia; font-size: 14px; font-style: italic; }
