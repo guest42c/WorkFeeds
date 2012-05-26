@@ -53,7 +53,7 @@ class Handler(webapp2.RequestHandler):
 
 	def retrieve_newers(self, t_query = None):
 		try:		
-			url = 'http://search.twitter.com/search.json?q=from:mettaonline'
+			url = 'http://search.twitter.com/search.json?q=from:mettaonline&rpp=1500'
 			if t_query:
 				for item in t_query:
 					url = url + "%20AND%20" + str(item)
