@@ -14,6 +14,8 @@ jinja_env = jinja2.Environment(loader = jinja2.FileSystemLoader(template_dir),
 logger = logging.getLogger('tweetvagas_application')
 logger.setLevel(logging.DEBUG)
 
+DEFAULT_MAX_TWEETS = 5
+
 class Tweet():
 	def __init__(self, created_at,from_user_name,profile_img,text,user):
 		self.created_at = created_at
@@ -30,16 +32,10 @@ def find_users(atext):
 	users_list = re.findall('@([A-Za-z0-9_]+)',atext)
 	return users_list
 
-MAX_TWEETS = 5
-
 class Handler(webapp2.RequestHandler):
 	def __init__(self, request, response):
 		self.initialize(request, response)
-		maxtweets = self.request.cookies.get("max_tweets")
-		if maxtweets:
-			self.max_tweets = int(maxtweets)
-		else:
-			self.max_tweets = MAX_TWEETS
+		self.max_tweets = self.get_max_tweets()
 
 	def write(self, *a, **kw):
 	    self.response.out.write(*a, **kw)
@@ -56,11 +52,12 @@ class Handler(webapp2.RequestHandler):
 			url = 'http://search.twitter.com/search.json?q=from:mettaonline'
 			if t_query:
 				for item in t_query:
-					url = url + "%20AND%20" + str(item)
-					logger.info(item)
-					logger.info(url)
-			result_size = '&rpp=1500'
-			p = urllib2.urlopen(url + result_size)
+					url = url + "%20" + str(item)
+					logger.info(item)					
+			result_size = '&rpp=100'
+			url = url + result_size
+			logger.info(url)
+			p = urllib2.urlopen(url)
 			c = p.read()
 			j = json.loads(c)
 			tweets = []
@@ -93,14 +90,27 @@ class Handler(webapp2.RequestHandler):
 		self.max_tweets = int(self.request.cookies.get("max_tweets")) + 10		
 		self.response.headers.add_header('Set-Cookie','max_tweets=%s; Path=/' % self.max_tweets)
 
+	def get_max_tweets(self):
+		maxtweets = self.request.cookies.get("max_tweets")
+		if maxtweets:
+			max_tweets = int(maxtweets)
+		else:
+			max_tweets = DEFAULT_MAX_TWEETS
+		self.response.headers.add_header('Set-Cookie','max_tweets=%s; Path=/' % max_tweets)
+		return max_tweets
+
 class MainPage(Handler):
 	def write_form(self, newers, filtro = ''):
 		self.render("front_template.html", tweets = newers, filtro = filtro)
 
 	def get(self):
-		self.response.headers.add_header('Set-Cookie','max_tweets=%s; Path=/' % MAX_TWEETS)
-		tweets = self.retrieve_newers()
-		self.write_form(tweets)
+		self.get_max_tweets()
+		filtro = self.request.get('filtro')
+		if filtro:
+			tweets = self.retrieve_newers(filtro.split(" "))
+		else:
+			tweets = self.retrieve_newers()
+		self.write_form(tweets,filtro)
 
 	def post(self):
 		if 'carregar_mais' in self.request.POST:

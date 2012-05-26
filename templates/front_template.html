@@ -10,15 +10,14 @@
     
     <body>        
         <div id="wrapper">
-            
+            <form method="post">
             <div id="header">
                 <h1>Tweet Vagas</h1>
                 <br />
-                <form method="post">
+                
 
                     <input class="search" name="filtro" type="text" value="{{filtro}}"><input type="submit" value="Filtrar">
 
-        		</form>
             </div>
             
             <div id="body">
@@ -53,15 +52,13 @@
                     
                     <h2>Anuncie sua vaga aqui:</h2>
                     <br>
-                    <form method="post">
                         <textarea class="anuncio" style="width:350px; height: 400px; " name="anuncio" ></textarea>
                         <br>
                         <input class="button" type="submit" value="Enviar">
-                    </form>
-                    
                 </div>
                 
-            </div>     
+            </div> 
+            </form>    
         </div>
         <div class="clear"></div>        
         <div id="footer">
