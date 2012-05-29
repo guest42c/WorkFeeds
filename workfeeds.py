@@ -7,9 +7,14 @@ import urlparse
 import re
 import logging
 
+from google.appengine.api import memcache
+from google.appengine.ext import db
+
 template_dir = os.path.join(os.path.dirname(__file__), 'templates')
 jinja_env = jinja2.Environment(loader = jinja2.FileSystemLoader(template_dir),
 			       autoescape = True)
+
+
 
 logger = logging.getLogger('tweetvagas_application')
 logger.setLevel(logging.DEBUG)
@@ -24,6 +29,22 @@ class Tweet():
 		self.text = text
 		self.profile_link = 'https://twitter.com/#!/%s' % user
 
+class Vaga(db.Model):
+	description = db.TextProperty(required = True)
+	created = db.DateTimeProperty(auto_now_add = True)
+	
+	@classmethod
+	def by_id(cls, bid):
+		return cls.get_by_id(bid)
+
+	def as_dict(self):
+		time_fmt = '%c'
+		d = {
+			'description': self.description,
+			'created': self.created.strftime(time_fmt)
+		}
+		return d
+
 def find_urls(atext):
     url_list = re.findall('(http://[^"\' ]+|https://[^"\' ]+)',atext)
     return url_list
@@ -31,6 +52,19 @@ def find_urls(atext):
 def find_users(atext):
 	users_list = re.findall('@([A-Za-z0-9_]+)',atext)
 	return users_list
+
+def get_vaga(vaga_id, update = False):
+	key = vaga_id
+	vaga = memcache.get(key)
+	if vaga is None or update:
+		vaga = Vaga.by_id(int(vaga_id))
+		memcache.set(key,vaga)
+	return vaga
+
+def datetimeformat(value, format='(%H:%M)  %d-%m-%Y'):
+    return value.strftime(format)
+
+jinja_env.filters['datetimeformat'] = datetimeformat
 
 class Handler(webapp2.RequestHandler):
 	def __init__(self, request, response):
@@ -49,7 +83,7 @@ class Handler(webapp2.RequestHandler):
 
 	def retrieve_newers(self, t_query = None):
 		try:		
-			url = 'http://search.twitter.com/search.json?q=from:mettaonline'
+			url = 'http://search.twitter.com/search.json?q=@tweetvagas'
 			if t_query:
 				for item in t_query:
 					url = url + "%20" + str(item)
@@ -115,6 +149,23 @@ class MainPage(Handler):
 	def post(self):
 		if 'carregar_mais' in self.request.POST:
 			self.more_tweets()
+		if 'anunciar' in self.request.POST:
+			texto = self.request.get('anuncio')
+			if texto:
+				v = Vaga(description = texto)
+				v.put()				
+				id_vaga = v.key().id()
+				link = ('http://tweetvagas.appspot.com/vagas/%s' % id_vaga)
+				desc_len = len(v.description)
+				if desc_len > 90:
+					tweet_text = v.description[0:89]
+				else:
+					tweet_text = v.description[0:(desc_len-1)]
+				url = ('https://twitter.com/intent/tweet?text=%(tweet)s %(link)s @tweetvagas' %
+					{'tweet':tweet_text,'link':link})
+				logger.info("Tweet url: %s" % url)
+				self.response.out.write('<html><head><meta http-equiv="refresh" content="0;url=%s"></head><body></body></html>' % (url))
+
 		filtro = self.request.get('filtro')
 		if filtro:
 			tweets = self.retrieve_newers(filtro.split(" "))
@@ -122,4 +173,14 @@ class MainPage(Handler):
 			tweets = self.retrieve_newers()
 		self.write_form(tweets,filtro)
 
-app = webapp2.WSGIApplication([('/', MainPage)], debug = True)
+class VagaHandler(Handler):
+	def write_form(self, vaga):
+		self.render("vaga_template.html", vaga = vaga)
+
+	def get(self, vaga_id):
+		vaga = get_vaga(vaga_id)
+		self.write_form(vaga)
+
+app = webapp2.WSGIApplication([('/', MainPage),
+							   ('/vaga/([0-9]+)',VagaHandler)
+							   ], debug = True)
