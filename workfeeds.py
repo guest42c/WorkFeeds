@@ -14,8 +14,6 @@ template_dir = os.path.join(os.path.dirname(__file__), 'templates')
 jinja_env = jinja2.Environment(loader = jinja2.FileSystemLoader(template_dir),
 			       autoescape = True)
 
-
-
 logger = logging.getLogger('tweetvagas_application')
 logger.setLevel(logging.DEBUG)
 
@@ -155,7 +153,7 @@ class MainPage(Handler):
 				v = Vaga(description = texto)
 				v.put()				
 				id_vaga = v.key().id()
-				link = ('http://tweetvagas.appspot.com/vagas/%s' % id_vaga)
+				link = ('http://tweetvagas.appspot.com/vaga/%s' % id_vaga)
 				desc_len = len(v.description)
 				if desc_len > 90:
 					tweet_text = v.description[0:89]
