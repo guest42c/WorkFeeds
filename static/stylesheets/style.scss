@@ -63,5 +63,6 @@ html, body { height: 100%; font-family: 'Fredoka One', cursive; }
 .twitbox li a:hover { text-decoration: underline; }
 .twhen { float: right; right: 0px; bottom: 0px; color: #999999; font-family: georgia; font-size: 14px; font-style: italic; }
 .vaga-box { list-style: none; padding: 15px; font-family: 'Verdana'; }
+.vaga-box textarea { width: 95%; height: 500px; border: none; }
 .vaga-desc { color: $text-color; padding: 15px; }
 .vaga-date { float: right; right: 0px; bottom: 0px; color: #999999; font-family: georgia; font-size: 14px; font-style: italic; }
