@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html>
-    
     <head>
         <title>Tweet Vagas</title>
-        <link rel="stylesheet" href="stylesheets/style.css" />
-	    <link href='http://fonts.googleapis.com/css?family=Fredoka+One' rel='stylesheet' type='text/css' />
+        <link rel="stylesheet" href="/stylesheets/style.css" />
+        <link href='http://fonts.googleapis.com/css?family=Fredoka+One' rel='stylesheet' type='text/css' />
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     </head>
     
@@ -12,21 +11,21 @@
         <div id="wrapper">
             <form method="post">
             <div id="header">
-                <h1>Tweet Vagas</h1>
+                <h1><a href="http://tweetvagas.appspot.com">Tweet Vagas</a></h1>
                 <br />
             </div>
             
             <div id="body">
                 
-                <div id="left-panel">
+                <div id="vaga-desc-panel">
                     
                     <div class="pnl-header">
                         <h2>Descrição da Vaga</h2>
                     </div>
-                    <div class="vaga">                        
-                        <pre class="post-content">{{vaga.description}}</div>
-                        <hr>
-                        <div class="vaga_date">{{vaga.created|datetimeformat}}</div>
+                    <div class="vaga-box">
+                        <div class="vaga-date">{{vaga.created|datetimeformat}}</div>
+                        <pre class="vaga-desc">{{vaga.description}}</div>
+                        
                     </div>   
 
                 </div>
@@ -34,7 +33,7 @@
             </form>    
         </div>      
         <div id="footer">
-            Desenvolvido por <a href="http://samuraidev.com.br">SamuraiDev</a>
+            Desenvolvido por <a href="http://samuraidev.com.br" target="_blank">SamuraiDev</a>
         </div>
     </body>
     

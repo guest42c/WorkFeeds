@@ -71,8 +71,7 @@ textarea {
   border: 1px solid #003; }
 
 a {
-  color: #27c8fd;
-  font-weight: bold; }
+  color: #27c8fd; }
 
 input[type=button], input[type=submit] {
   -moz-border-radius: 8px;
@@ -113,6 +112,9 @@ html, body {
   -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=3, Direction=135, Color='#aaaaaa')";
   filter: progid:DXImageTransform.Microsoft.Shadow(Strength=3, Direction=135, Color='#aaaaaa');
   padding: 15px 3% 15px 3%; }
+
+#header a {
+  color: white; }
 
 #body {
   padding: 15px 1.5% 15px 1.5%;
@@ -195,11 +197,25 @@ html, body {
   -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=3, Direction=135, Color='#aaaaaa')";
   filter: progid:DXImageTransform.Microsoft.Shadow(Strength=3, Direction=135, Color='#aaaaaa');
   float: left;
-  width: 26%;
+  width: 30%;
   border: 5px solid #27c8fd;
   background-color: #27c8fd;
   color: white;
   margin-left: 2%; }
+
+#vaga-desc-panel {
+  -moz-border-radius: 8px;
+  -webkit-border-radius: 8px;
+  -khtml-border-radius: 8px;
+  border-radius: 8px;
+  -moz-box-shadow: 3px 3px 5px 4px #aaa;
+  -webkit-box-shadow: 3px 3px 5px 4px #aaa;
+  box-shadow: 3px 3px 5px 4px #aaa;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=3, Direction=135, Color='#aaaaaa')";
+  filter: progid:DXImageTransform.Microsoft.Shadow(Strength=3, Direction=135, Color='#aaaaaa');
+  float: left;
+  width: 66%;
+  border: 5px solid #27c8fd; }
 
 .clear {
   height: 0px;
@@ -245,6 +261,24 @@ html, body {
   text-decoration: underline; }
 
 .twhen {
+  float: right;
+  right: 0px;
+  bottom: 0px;
+  color: #999999;
+  font-family: georgia;
+  font-size: 14px;
+  font-style: italic; }
+
+.vaga-box {
+  list-style: none;
+  padding: 15px;
+  font-family: 'Verdana'; }
+
+.vaga-desc {
+  color: #333333;
+  padding: 15px; }
+
+.vaga-date {
   float: right;
   right: 0px;
   bottom: 0px;

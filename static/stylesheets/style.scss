@@ -30,13 +30,14 @@ h3 { font-size: 1.6em; }
 h4 { font-size: 1.4em; }
 input[type=text] { @include rounded; padding: 3px 3px 3px 10px; border: 1px solid #003; min-width: 300px; }
 textarea { @include rounded; resize: none; padding: 5px; border: 1px solid #003; }
-a { color: $main-color; font-weight: bold; }
+a { color: $main-color; }
 input[type=button], input[type=submit] { @include rounded; @include light-shadow; @include default-bg; border: 1px solid $second-color; padding: 3px 10px 3px 10px; min-width: 100px; font-size: 1.2em; font-weight: bold; cursor: pointer; }
 
 /* Layout */
 html, body { height: 100%; font-family: 'Fredoka One', cursive; }
 #wrapper { height: auto; min-height: 100%; background-color: $white; margin-bottom: 10px; }
 #header { @include default-bg; @include shadow; padding: 15px 3% 15px 3%; }
+#header a { color: $white; }
 #body { padding: 15px 1.5% 15px 1.5%; color: $main-color; padding-bottom: 40px; }
 #footer { @include default-bg; @include shadow; height: 30px; padding: 5px; margin-top: -40px; text-align: center; clear: both; }
 #footer a { color: $white; text-decoration: underline; }
@@ -45,7 +46,8 @@ html, body { height: 100%; font-family: 'Fredoka One', cursive; }
 #left-panel { @include panel(left, 66%); }
 #right-panel { @include panel(left, 00%); margin-left: 2%; }
 #search-panel { @include panel(left, 66%); }
-#advertisements { @include panel(left, 26%); background-color: $main-color; color: $white; margin-left: 2%; }
+#advertisements { @include panel(left, 30%); background-color: $main-color; color: $white; margin-left: 2%; }
+#vaga-desc-panel { @include panel(left, 66%); } 
 
 .clear { height: 0px; clear: both; }
 
@@ -60,3 +62,6 @@ html, body { height: 100%; font-family: 'Fredoka One', cursive; }
 .content { padding-left: 10px; }
 .twitbox li a:hover { text-decoration: underline; }
 .twhen { float: right; right: 0px; bottom: 0px; color: #999999; font-family: georgia; font-size: 14px; font-style: italic; }
+.vaga-box { list-style: none; padding: 15px; font-family: 'Verdana'; }
+.vaga-desc { color: $text-color; padding: 15px; }
+.vaga-date { float: right; right: 0px; bottom: 0px; color: #999999; font-family: georgia; font-size: 14px; font-style: italic; }
