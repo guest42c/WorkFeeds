@@ -10,6 +10,8 @@ import logging
 from google.appengine.api import memcache
 from google.appengine.ext import db
 
+from unicodedata import normalize
+
 template_dir = os.path.join(os.path.dirname(__file__), 'templates')
 jinja_env = jinja2.Environment(loader = jinja2.FileSystemLoader(template_dir),
 			       autoescape = True)
@@ -64,6 +66,10 @@ def datetimeformat(value, format='(%H:%Mh)  %d-%m-%Y'):
 
 jinja_env.filters['datetimeformat'] = datetimeformat
 
+def remover_acentos(txt, codif='utf-8'):
+	logger.info("removendo acentos")
+	return normalize('NFKD', txt.decode(codif)).encode('ASCII','ignore')
+
 class Handler(webapp2.RequestHandler):
 	def __init__(self, request, response):
 		self.initialize(request, response)
@@ -81,17 +87,18 @@ class Handler(webapp2.RequestHandler):
 
 	def retrieve_newers(self, t_query = None):
 		try:		
-			url = 'http://search.twitter.com/search.json?q=@tweetvagas'
+			url = u'http://search.twitter.com/search.json?q=@tweetvagas'
 			if t_query:
 				for item in t_query:
-					url = url + "%20" + str(item)
+					url = url + u"%20" + item
 					logger.info(item)					
-			result_size = '&rpp=100'
+			result_size = u'&rpp=100'
 			url = url + result_size
 			logger.info(url)
 			p = urllib2.urlopen(url)
 			c = p.read()
 			j = json.loads(c)
+			logger.info("JSON: %s" % j)
 			tweets = []
 			i = 0
 			logger.info("Numero de resultados no JSON: %s" % len(j['results']))
@@ -138,6 +145,9 @@ class MainPage(Handler):
 	def get(self):
 		self.get_max_tweets()
 		filtro = self.request.get('filtro')
+		logger.info("Filtro entrada: %s" % filtro)
+		filtro = remover_acentos(filtro.encode('utf-8'))
+		logger.info("Filtro resultado: %s" % filtro)
 		if filtro:
 			tweets = self.retrieve_newers(filtro.split(" "))
 		else:
@@ -160,11 +170,14 @@ class MainPage(Handler):
 				else:
 					tweet_text = v.description[0:(desc_len-1)]
 				url = ('https://twitter.com/intent/tweet?text=%(tweet)s %(link)s @tweetvagas' %
-					{'tweet':tweet_text,'link':link})
+					{'tweet':tweet_text.replace('\n',' '),'link':link})
 				logger.info("Tweet url: %s" % url)
 				self.response.out.write('<html><head><meta http-equiv="refresh" content="0;url=%s"></head><body></body></html>' % (url))
 
 		filtro = self.request.get('filtro')
+		logger.info("Filtro entrada: %s" % filtro)
+		filtro = remover_acentos(filtro.encode('utf-8'))
+		logger.info("Filtro resultado: %s" % filtro)
 		if filtro:
 			tweets = self.retrieve_newers(filtro.split(" "))
 		else:
