@@ -265,6 +265,9 @@ html, body {
 .content {
   padding-left: 10px; }
 
+.description {
+  font-family: 'Verdana'; }
+
 .twitbox li a:hover {
   text-decoration: underline; }
 
@@ -279,7 +282,7 @@ html, body {
 
 .anuncio {
   width: 408px;
-  height: 400px;
+  height: 450px;
   float: right; }
 
 .vaga-box {
@@ -289,7 +292,7 @@ html, body {
 
 .vaga-box textarea {
   width: 800px;
-  height: 500px;
+  height: 400px;
   border: none; }
 
 .vaga-desc {
