@@ -153,7 +153,8 @@ html, body {
   filter: progid:DXImageTransform.Microsoft.Shadow(Strength=3, Direction=135, Color='#aaaaaa');
   float: left;
   width: 880px;
-  border: 5px solid #27c8fd; }
+  border: 5px solid #27c8fd;
+  margin-bottom: 40px; }
 
 #right-panel {
   -moz-border-radius: 8px;
@@ -199,7 +200,11 @@ html, body {
   border: 5px solid #27c8fd;
   background-color: #27c8fd;
   color: white;
-  margin-left: 2%; }
+  margin-left: 2%;
+  margin-bottom: 40px; }
+
+#advertisements input {
+  float: right; }
 
 #vaga-desc-panel {
   -moz-border-radius: 8px;
@@ -240,17 +245,22 @@ html, body {
 
 .twit {
   border-bottom: 1px dashed #0084b4;
-  margin-top: 5px; }
+  margin-bottom: 5px;
+  height: 50px; }
 
 .twit > img {
   width: 50px;
   height: 50px;
-  float: left; }
+  float: left;
+  margin: 0px 8px 8px 0px; }
+
+.profile_link {
+  font-size: 18px;
+  font-weight: bold; }
 
 .twit a {
-  font-size: 20px;
-  font-weight: bold;
-  color: #0084b4; }
+  color: #0084b4;
+  font-weight: normal; }
 
 .content {
   padding-left: 10px; }
@@ -268,8 +278,9 @@ html, body {
   font-style: italic; }
 
 .anuncio {
-  width: 400px;
-  height: 400px; }
+  width: 408px;
+  height: 400px;
+  float: right; }
 
 .vaga-box {
   list-style: none;
@@ -293,3 +304,7 @@ html, body {
   font-family: georgia;
   font-size: 14px;
   font-style: italic; }
+
+.mais {
+  text-align: center;
+  padding: 5px; }

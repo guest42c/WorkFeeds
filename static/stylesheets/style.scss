@@ -43,10 +43,11 @@ html, body { height: 100%; font-family: 'Fredoka One', cursive; }
 #footer a { color: $white; text-decoration: underline; }
 
 .search { font-size: 1.2em; font-weight: bold; }
-#left-panel { @include panel(left, 880px); }
+#left-panel { @include panel(left, 880px); margin-bottom: 40px; }
 #right-panel { @include panel(left, 00%); margin-left: 2%; }
 #search-panel { @include panel(left, 66%); }
-#advertisements { @include panel(left, 420px); background-color: $main-color; color: $white; margin-left: 2%; }
+#advertisements { @include panel(left, 420px); background-color: $main-color; color: $white; margin-left: 2%; margin-bottom: 40px; }
+#advertisements input { float: right; }
 #vaga-desc-panel { @include panel(left, 66%); } 
 
 .clear { height: 0px; clear: both; }
@@ -56,14 +57,16 @@ html, body { height: 100%; font-family: 'Fredoka One', cursive; }
 
 .twitbox { list-style: none; padding: 15px; font-family: 'Verdana'; }
 .twitbox li { color: $text-color; padding: 10px; }
-.twit { border-bottom: 1px dashed $second-color; margin-top: 5px; }
-.twit > img { width: 50px; height: 50px; float: left; }
-.twit a { font-size: 20px; font-weight: bold; color: $second-color; }
+.twit { border-bottom: 1px dashed $second-color; margin-bottom: 5px; height: 50px; }
+.twit > img { width: 50px; height: 50px; float: left; margin: 0px 8px 8px 0px; }
+.profile_link { font-size: 18px; font-weight: bold; }
+.twit a { color: $second-color; font-weight: normal; }
 .content { padding-left: 10px; }
 .twitbox li a:hover { text-decoration: underline; }
 .twhen { float: right; right: 0px; bottom: 0px; color: #999999; font-family: georgia; font-size: 14px; font-style: italic; }
-.anuncio { width: 400px; height: 400px; }
+.anuncio { width: 408px; height: 400px; float: right; }
 .vaga-box { list-style: none; padding: 15px; font-family: 'Verdana'; }
 .vaga-box textarea { width: 800px; height: 500px; border: none; }
 .vaga-desc { color: $text-color; padding: 15px; }
 .vaga-date { float: right; right: 0px; bottom: 0px; color: #999999; font-family: georgia; font-size: 14px; font-style: italic; }
+.mais { text-align: center; padding: 5px; }

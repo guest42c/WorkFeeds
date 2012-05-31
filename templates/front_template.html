@@ -16,7 +16,7 @@
                 <br />
                 
 
-                    <input class="search" name="filtro" type="text" value="{{filtro}}"><input type="submit" value="Filtrar">
+                    <input class="search" name="filtro" type="text" value="{{filtro}}"><input class="button" type="submit" value="Filtrar">
 
             </div>
             
@@ -35,16 +35,18 @@
                         <img src="{{tweet.profile_img}}"/>
     					<div class="twhen">{{tweet.created_at|twitterdtformat}}</div>
                         <div class="content">
-    						<a href="{{tweet.profile_link}}" target="_blank">{{tweet.from_user_name}}</a>
+    						<a href="{{tweet.profile_link}}" target="_blank" class="profile_link">{{tweet.from_user_name}}</a>
     						<div class="description">{{tweet.text|safe}}</div>
     					</div>    					
     				</li>                        
     		        
     		        {% endfor %}             
 		            </ul>
-                    <form method="post">
-                        <input type="submit" name="carregar_mais" value="Carregar Mais">
-                    </form>
+                    <div class="mais">
+                        <form method="post">
+                            <input type="submit" name="carregar_mais" value="Carregar Mais">
+                        </form>
+                    </div>
 
                 </div>
                

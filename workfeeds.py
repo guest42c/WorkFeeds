@@ -51,7 +51,7 @@ def find_urls(atext):
     return url_list
 
 def find_users(atext):
-	users_list = re.findall('@([A-Za-z0-9_]+)',atext)
+	users_list = re.findall('@([A-Za-z0-9_]+) ?',atext)
 	return users_list
 
 def get_vaga(vaga_id, update = False):
