@@ -6,6 +6,7 @@ import json
 import urlparse
 import re
 import logging
+import time
 
 from google.appengine.api import memcache
 from google.appengine.ext import db
@@ -61,10 +62,15 @@ def get_vaga(vaga_id, update = False):
 		memcache.set(key,vaga)
 	return vaga
 
-def datetimeformat(value, format='(%H:%Mh)  %d-%m-%Y'):
+def datetimeformat(value, format='%d-%m-%Y (%H:%Mh)'):
     return value.strftime(format)
 
 jinja_env.filters['datetimeformat'] = datetimeformat
+
+def twitterdtformat(value):
+	return time.strftime('%d-%m-%Y (%H:%Mh)',time.strptime(value, '%a, %d %b %Y %H:%M:%S +0000'))
+
+jinja_env.filters['twitterdtformat'] = twitterdtformat
 
 def remover_acentos(txt, codif='utf-8'):
 	logger.info("removendo acentos")

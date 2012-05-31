@@ -33,7 +33,7 @@
                     {% for tweet in tweets %}
 					<li class="twit">
                         <img src="{{tweet.profile_img}}"/>
-    					<div class="twhen">{{tweet.created_at}}</div>
+    					<div class="twhen">{{tweet.created_at|twitterdtformat}}</div>
                         <div class="content">
     						<a href="{{tweet.profile_link}}" target="_blank">{{tweet.from_user_name}}</a>
     						<div class="description">{{tweet.text|safe}}</div>
