@@ -35,18 +35,18 @@ input[type=button], input[type=submit] { @include rounded; @include light-shadow
 
 /* Layout */
 html, body { height: 100%; font-family: 'Fredoka One', cursive; }
-#wrapper { height: auto; min-height: 100%; background-color: $white; margin-bottom: 10px; }
+#wrapper { height: auto; min-height: 100%; background-color: $white; }
 #header { @include default-bg; @include shadow; padding: 15px 3% 15px 3%; }
 #header a { color: $white; }
-#body { padding: 15px 1.5% 15px 1.5%; color: $main-color; padding-bottom: 40px; }
-#footer { @include default-bg; @include shadow; height: 30px; padding: 5px; margin-top: -40px; text-align: center; clear: both; }
+#body { padding: 15px 1.5% 85px 1.5%; color: $main-color; }
+#footer { @include default-bg; @include shadow; height: 30px; padding: 5px; margin-top: -40px; text-align: center; clear: both;}
 #footer a { color: $white; text-decoration: underline; }
 
 .search { font-size: 1.2em; font-weight: bold; }
-#left-panel { @include panel(left, 66%); }
+#left-panel { @include panel(left, 880px); }
 #right-panel { @include panel(left, 00%); margin-left: 2%; }
 #search-panel { @include panel(left, 66%); }
-#advertisements { @include panel(left, 30%); background-color: $main-color; color: $white; margin-left: 2%; }
+#advertisements { @include panel(left, 420px); background-color: $main-color; color: $white; margin-left: 2%; }
 #vaga-desc-panel { @include panel(left, 66%); } 
 
 .clear { height: 0px; clear: both; }
@@ -62,7 +62,8 @@ html, body { height: 100%; font-family: 'Fredoka One', cursive; }
 .content { padding-left: 10px; }
 .twitbox li a:hover { text-decoration: underline; }
 .twhen { float: right; right: 0px; bottom: 0px; color: #999999; font-family: georgia; font-size: 14px; font-style: italic; }
+.anuncio { width: 400px; height: 400px; }
 .vaga-box { list-style: none; padding: 15px; font-family: 'Verdana'; }
-.vaga-box textarea { width: 95%; height: 500px; border: none; }
+.vaga-box textarea { width: 800px; height: 500px; border: none; }
 .vaga-desc { color: $text-color; padding: 15px; }
 .vaga-date { float: right; right: 0px; bottom: 0px; color: #999999; font-family: georgia; font-size: 14px; font-style: italic; }

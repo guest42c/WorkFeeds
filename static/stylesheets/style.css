@@ -100,8 +100,7 @@ html, body {
 #wrapper {
   height: auto;
   min-height: 100%;
-  background-color: white;
-  margin-bottom: 10px; }
+  background-color: white; }
 
 #header {
   background-color: #27c8fd;
@@ -117,9 +116,8 @@ html, body {
   color: white; }
 
 #body {
-  padding: 15px 1.5% 15px 1.5%;
-  color: #27c8fd;
-  padding-bottom: 40px; }
+  padding: 15px 1.5% 85px 1.5%;
+  color: #27c8fd; }
 
 #footer {
   background-color: #27c8fd;
@@ -154,7 +152,7 @@ html, body {
   -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=3, Direction=135, Color='#aaaaaa')";
   filter: progid:DXImageTransform.Microsoft.Shadow(Strength=3, Direction=135, Color='#aaaaaa');
   float: left;
-  width: 66%;
+  width: 880px;
   border: 5px solid #27c8fd; }
 
 #right-panel {
@@ -197,7 +195,7 @@ html, body {
   -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=3, Direction=135, Color='#aaaaaa')";
   filter: progid:DXImageTransform.Microsoft.Shadow(Strength=3, Direction=135, Color='#aaaaaa');
   float: left;
-  width: 30%;
+  width: 420px;
   border: 5px solid #27c8fd;
   background-color: #27c8fd;
   color: white;
@@ -269,13 +267,17 @@ html, body {
   font-size: 14px;
   font-style: italic; }
 
+.anuncio {
+  width: 400px;
+  height: 400px; }
+
 .vaga-box {
   list-style: none;
   padding: 15px;
   font-family: 'Verdana'; }
 
 .vaga-box textarea {
-  width: 95%;
+  width: 800px;
   height: 500px;
   border: none; }
 
