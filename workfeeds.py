@@ -20,7 +20,8 @@ jinja_env = jinja2.Environment(loader = jinja2.FileSystemLoader(template_dir),
 logger = logging.getLogger('tweetvagas_application')
 logger.setLevel(logging.DEBUG)
 
-DEFAULT_MAX_TWEETS = 5
+DEFAULT_MAX_TWEETS = 20
+TWEET_INC = 10
 
 class Tweet():
 	def __init__(self, created_at,from_user_name,profile_img,text,user):
@@ -130,7 +131,7 @@ class Handler(webapp2.RequestHandler):
 		return tweets
 
 	def more_tweets(self):
-		self.max_tweets = int(self.request.cookies.get("max_tweets")) + 10		
+		self.max_tweets = int(self.request.cookies.get("max_tweets")) + TWEET_INC		
 		self.response.headers.add_header('Set-Cookie','max_tweets=%s; Path=/' % self.max_tweets)
 
 	def get_max_tweets(self):
