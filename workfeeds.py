@@ -50,10 +50,6 @@ def find_urls(atext):
     url_list = re.findall('(http://[^"\' ]+|https://[^"\' ]+)',atext)
     return url_list
 
-def find_users(atext):
-	users_list = re.findall('@([A-Za-z0-9_]+) ?',atext)
-	return users_list
-
 def get_vaga(vaga_id, update = False):
 	key = vaga_id
 	vaga = memcache.get(key)
@@ -61,6 +57,10 @@ def get_vaga(vaga_id, update = False):
 		vaga = Vaga.by_id(int(vaga_id))
 		memcache.set(key,vaga)
 	return vaga
+
+def user_link(user_l):
+	u = user_l.string[user_l.start(0):user_l.end(0)]
+	return ('<a href="https://twitter.com/#!/%s" target="_blank">%s </a>' % (u[1:],u))
 
 def datetimeformat(value, format='%d-%m-%Y (%H:%Mh)'):
     return value.strftime(format)
@@ -104,10 +104,10 @@ class Handler(webapp2.RequestHandler):
 			p = urllib2.urlopen(url)
 			c = p.read()
 			j = json.loads(c)
-			logger.info("JSON: %s" % j)
+			# logger.info("JSON: %s" % j)
 			tweets = []
 			i = 0
-			logger.info("Numero de resultados no JSON: %s" % len(j['results']))
+			# logger.info("Numero de resultados no JSON: %s" % len(j['results']))
 			for c in j['results']:
 				created_at = c['created_at']
 				from_user_name = c['from_user_name']
@@ -116,9 +116,7 @@ class Handler(webapp2.RequestHandler):
 				urls = find_urls(text)
 				for u in urls:
 					text = text.replace(u,'<a href="%s" target="_blank">%s</a> ' % (u,u))
-				users_list = find_users(text)
-				for u in users_list:
-					text = text.replace(u+" ",'<a href="https://twitter.com/#!/%s" target="_blank">%s </a>' % (u[0:],u))
+				text = re.sub(r' @([A-Za-z0-9_]+)',user_link,text)
 				user = c['from_user']
 				tweet = Tweet(created_at,from_user_name,profile_img,text,user)
 				tweets.append(tweet)
