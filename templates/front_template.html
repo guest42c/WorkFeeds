@@ -2,67 +2,53 @@
 <html>
     
     <head>
-        <title>Tweet Vagas</title>
+        <title>Tweet Vagas - Fácil e Rápido</title>
         <link rel="stylesheet" href="/stylesheets/style.css" />
 	    <link href='http://fonts.googleapis.com/css?family=Fredoka+One' rel='stylesheet' type='text/css' />
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     </head>
     
-    <body>        
-        <div id="wrapper">
+    <body>   
+        <div id="wrap">     
             <form method="post">
-            <div id="header">
-                <h1>Tweet Vagas</h1>
-                <br />
-                
-
-                    <input class="search" name="filtro" type="text" value="{{filtro}}"><input class="button" type="submit" value="Filtrar">
-
-            </div>
-            
-            <div id="body">
-                
-                <div id="left-panel">
-                    
-                    <div class="pnl-header">
-                        <h2>Vagas</h2>
+                <header>
+                    <h1 class="logo">Tweet Vagas</h1>
+                    <div class="search group">
+                        <input class="search-box "name="filtro" type="text" value="{{filtro}}"/>
+                        <input class="button" type="submit" value="Filtrar"/>
                     </div>
-		      
-                    <ul class="twitbox">
-
-                    {% for tweet in tweets %}
-					<li class="twit">
-                        <img src="{{tweet.profile_img}}"/>
-    					<div class="twhen">{{tweet.created_at|twitterdtformat}}</div>
-                        <div class="content">
-    						<a href="{{tweet.profile_link}}" target="_blank" class="profile_link">{{tweet.from_user_name}}</a>
-    						<div class="description">{{tweet.text|safe}}</div>
-    					</div>    					
-    				</li>                        
-    		        
-    		        {% endfor %}             
-		            </ul>
-                    <div class="mais">
-                        <form method="post">
-                            <input type="submit" name="carregar_mais" value="Carregar Mais">
-                        </form>
-                    </div>
-
-                </div>
-               
-                <div id="advertisements">                    
-                    <h2>Anuncie sua vaga aqui:</h2>
-                    <br>
+                </header>
+                <div id="blocks">                
+                    <section class="content box">                
+                        <header><h1>Vagas</h1></header>    	      
+                        <ul class="twitbox group">
+                            {% for tweet in tweets %}
+            				<li class="twit">
+                                <header>
+                                    <div class="twhen">{{tweet.created_at|twitterdtformat}}</div>
+                                    <img src="{{tweet.profile_img}}"/>
+                                    <a href="{{tweet.profile_link}}" target="_blank" class="profile_link">{{tweet.from_user_name}}</a>       
+                                </header>
+                                <article class="content">
+                                    {{tweet.text|safe}}
+            					</article>    					
+            				</li>
+                            {% endfor %}             
+        	            </ul>
+                        <input class="button" type="submit" name="carregar_mais" value="Carregar Mais">                    
+                    </section>
+                    <section class="box">
+                        <header>              
+                            <h1>Anuncie sua vaga</h1>
+                        </header>
                         <textarea class="anuncio" name="anuncio" ></textarea>
-                        <br>
-                        <input class="button" name="anunciar" type="submit" value="Enviar">
-                </div>                
-            </div> 
+                        <input class="button" name="anunciar" type="submit" value="Enviar">               
+                    </section> 
+                </div>
             </form>   
-        </div>        
-        <div id="footer">            
-            Desenvolvido por <a href="http://samuraidev.com.br" target="_blank">SamuraiDev</a>
-        </div>
-    </body>
-    
+            <footer id="primary-foot">            
+                Desenvolvido por <a href="http://samuraidev.com.br" target="_blank">SamuraiDev</a>
+            </footer>
+        </div>  
+    </body>    
 </html>
