@@ -9,65 +9,197 @@ caption, th, td { font-weight: normal; text-align: left; }
 blockquote:before, blockquote:after, q:before, q:after { content: ""; }
 blockquote, q { quotes: "" ""; }
 
-/* Variables */
-$main-color: #27c8fd;
-$second-color: #0084B4;
-$text-color: #333333;
-$border-color: #D2DADA;
-$white: #ffffff;
+@font-face {
+	font-family: "ChunkFive";
+	src: url("/fonts/Chunkfive.otf")
+	format("opentype");
+}
 
-/* Mixins */
-@mixin rounded { -moz-border-radius: 8px; -webkit-border-radius: 8px; -khtml-border-radius: 8px; border-radius: 8px; }
-@mixin shadow { -moz-box-shadow: 3px 3px 5px 4px #aaa; -webkit-box-shadow: 3px 3px 5px 4px #aaa; box-shadow: 3px 3px 5px 4px #aaa; -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=3, Direction=135, Color='#aaaaaa')"; filter: progid:DXImageTransform.Microsoft.Shadow(Strength=3, Direction=135, Color='#aaaaaa'); }
-@mixin light-shadow { -moz-box-shadow: 1px 1px 3px 2px #aaa; -webkit-box-shadow: 1px 1px 3px 2px #aaa; box-shadow: 1px 1px 3px 2px #aaa; -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=1, Direction=90, Color='#aaaaaa')"; filter: progid:DXImageTransform.Microsoft.Shadow(Strength=3, Direction=90, Color='#aaaaaa'); }
-@mixin panel ($float, $width) { @include rounded; @include shadow; float: $float; width: $width; border: 5px solid $main-color; }
-@mixin default-bg { background-color: $main-color; color: $white; }
+@font-face {
+	font-family: "Enriqueta-Regular";
+	src: url("/fonts/Enriqueta-Regular.otf")
+	format("opentype");
+}
 
-/* Patterns */
-h1 { font-size: 2.4em; }
-h2 { font-size: 1.8em; }
-h3 { font-size: 1.6em; }
-h4 { font-size: 1.4em; }
-input[type=text] { @include rounded; padding: 3px 3px 3px 10px; border: 1px solid #003; min-width: 300px; }
-textarea { @include rounded; resize: none; padding: 5px; border: 1px solid #003; }
-a { color: $main-color; }
-input[type=button], input[type=submit] { @include rounded; @include light-shadow; @include default-bg; border: 1px solid $second-color; padding: 3px 10px 3px 10px; min-width: 100px; font-size: 1.2em; font-weight: bold; cursor: pointer; }
+@font-face {
+	font-family: "Enriqueta-Bold";
+	src: url("/fonts/Enriqueta-Bold.otf")
+	format("opentype");
+}
 
-/* Layout */
-html, body { height: 100%; font-family: 'Fredoka One', cursive; }
-#wrapper { height: auto; min-height: 100%; background-color: $white; }
-#header { @include default-bg; @include shadow; padding: 15px 3% 15px 3%; }
-#header a { color: $white; }
-#body { padding: 15px 1.5% 85px 1.5%; color: $main-color; }
-#footer { @include default-bg; @include shadow; height: 30px; padding: 5px; margin-top: -40px; text-align: center; clear: both;}
-#footer a { color: $white; text-decoration: underline; }
+#wrap {
+	margin: 0 auto;
+	width: 960px;
+	padding: 0;
+}
 
-.search { font-size: 1.2em; font-weight: bold; }
-#left-panel { @include panel(left, 880px); margin-bottom: 40px; }
-#right-panel { @include panel(left, 00%); margin-left: 2%; }
-#search-panel { @include panel(left, 66%); }
-#advertisements { @include panel(left, 420px); background-color: $main-color; color: $white; margin-left: 2%; margin-bottom: 40px; }
-#advertisements input { float: right; }
-#vaga-desc-panel { @include panel(left, 66%); } 
+.group:before,group:after {
+	content: "";
+	display: table;
+}
 
-.clear { height: 0px; clear: both; }
+.group:after {
+	clear: both;
+}
 
-.pnl-header { @include default-bg; padding-bottom: 5px; text-align: center; }
-.button { background-color: $white !important; color: $second-color !important; }
+.group {
+	zoom: 1; /* IE6&7*/
+}
+
+.anuncio input[type="submit"] {
+	margin: 0 auto;
+}
+
+
+body {
+	font-family: "Enriqueta-Regular", Verdana, sans-serif;
+	font-size: 14px;
+	background: url("/images/bg.png") repeat;
+}
+
+h1 {
+	font-family: "ChunkFive", Verdana, sans-serif;
+	font-size: 30px;
+	margin: 10px;	
+	color: #d2691e;
+	border-bottom: 1px solid #ecece9;
+}
+
+li:hover {
+	background: #e9e9e4;
+	a { font-size: 16px; }
+	-webkit-transition: all .3s linear;
+	-webkit-transition: all .3s linear;
+	-moz-transition: all .3s linear;
+	-o-transition: all .3s linear;
+	transition: all .3s linear;
+	-webkit-transform: scale(1.2);
+	-moz-transform: scale(1.2);
+	-o-transform: scale(1.2);
+	transform: scale(1.2);
+}
+
+.logo {
+	display: block;
+	font-size: 60px;
+	-webkit-text-shadow: 3px 3px 6px #ccc;
+	-moz-text-shadow: 3px 3px 6px #ccc;
+	text-shadow: 3px 3px 6px #ccc;
+	border-bottom: 0;
+}
+
+.search-box {
+	float: left;
+	width: 350px;
+	margin: auto 10px;
+}
+
+.search input[type="submit"] {
+	float: left;
+}
+
+.content {
+	display: block;
+}
+
+.button {
+	float: right;
+	margin: 0 10px;
+	padding: 8px 15px;
+	font: bold 14px "Enriqueta-Bold", Verdana, sans-serif;
+	text-transform: uppercase;
+	line-height: 1;
+	color: #787871;
+	text-shadow: 1px 1px 1px #fff;
+	border: none;
+	background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#E2E2D9), to(#BDBDB5)); 
+	background-image: -moz-linear-gradient(19% 75% 90deg,#BDBDB5, #E2E2D9);
+	background-color: #e2e2d9;
+	-webkit-border-radius: 8px; 
+	-moz-border-radius: 8px; 
+	-o-border-radius: 8px; 
+	border-radius: 8px;
+	cursor: pointer;
+}
+
+.button:hover {
+	-webkit-box-shadow: 1px 1px 3px rgba(0, 0, 0, .4); 
+	-moz-box-shadow: 1px 1px 3px rgba(0, 0, 0, .4);
+	box-shadow: 1px 1px 3px rgba(0, 0, 0, .4);
+	color: #d2691e;
+}
+
+.anuncio {
+	height: 300px;
+	width: 320px;
+	margin: 10px;
+	border: 2px solid #ccc;
+	background: #e9e9e4;
+	-webkit-border-radius: 8px; 
+	-moz-border-radius: 8px; 
+	-o-border-radius: 8px; 
+	border-radius: 8px;
+}
+
+/***** BLOCKS*****/
+
+#blocks {
+	float: left;
+	margin-top: 20px;
+}
+
+#blocks section {
+	float: left;
+	width: 500px;
+	height: auto;
+	display: inline;
+	background: #fafaf6; 
+	border: 5px solid #e9e9e4;
+	margin-right: 30px;
+	padding: 5px;
+}
+
+#blocks section:last-child {
+	width: 350px;
+	margin-right: 0;
+}
+
+.box h1.script {
+	font: normal 24px "Enriqueta-Bold", Georgia, serif;
+	color: #717165;
+	margin-left: 10px;
+	padding: 5px 0 0 0;
+	border-bottom: 1px solid #ecece9;
+	width: 270px;
+	text-align: left;
+}
+
+
+/* FOOTER */
+
+#primary-foot {
+	width: 940px;
+	float: left;
+	margin-top: 20px;
+	padding: 10px;
+	background: #e2e2d7;
+	background: rgba(149, 149, 137, .15);
+	border: 1px solid #d2d2c4;
+}
+
 
 .twitbox { list-style: none; padding: 15px; font-family: 'Verdana'; }
-.twitbox li { color: $text-color; padding: 10px; }
-.twit { border-bottom: 1px dashed $second-color; margin-bottom: 5px; height: 50px; }
+.twitbox li { padding: 10px; }
+.twit { border-bottom: 1px dashed #ccc; margin-bottom: 5px; bottom: 0px; }
 .twit > img { width: 50px; height: 50px; float: left; margin: 0px 8px 8px 0px; }
 .profile_link { font-size: 18px; font-weight: bold; }
-.twit a { color: $second-color; font-weight: normal; }
+.twit a { font-weight: normal; }
 .content { padding-left: 10px; }
 .description { font-family: 'Verdana'; }
 .twitbox li a:hover { text-decoration: underline; }
 .twhen { float: right; right: 0px; bottom: 0px; color: #999999; font-family: georgia; font-size: 14px; font-style: italic; }
-.anuncio { width: 408px; height: 450px; float: right; }
 .vaga-box { list-style: none; padding: 15px; font-family: 'Verdana'; }
 .vaga-box textarea { width: 800px; height: 400px; border: none; }
-.vaga-desc { color: $text-color; padding: 15px; }
+.vaga-desc { padding: 15px; }
 .vaga-date { float: right; right: 0px; bottom: 0px; color: #999999; font-family: georgia; font-size: 14px; font-style: italic; }
 .mais { text-align: center; padding: 5px; }
