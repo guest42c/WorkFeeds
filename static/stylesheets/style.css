@@ -100,7 +100,11 @@ li:hover {
 .logo a {
   display: block;
   font-size: 60px;
-  color: #d2691e;
+  color: #d2691e; }
+
+.logo {
+  display: block;
+  font-size: 60px;
   -webkit-text-shadow: 3px 3px 6px #ccc;
   -moz-text-shadow: 3px 3px 6px #ccc;
   text-shadow: 3px 3px 6px #ccc;
@@ -202,8 +206,7 @@ li:hover {
   font-size: 30px; }
 
 #promo img {
-  float: left;
-  bottom: 0; }
+  float: left; }
 
 #powered {
   font-style: italic;

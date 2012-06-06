@@ -33,8 +33,6 @@ blockquote, q { quotes: "" ""; }
 	format("truetype");
 }
 
-
-
 #wrap {
 	margin: 0 auto;
 	width: 960px;
@@ -90,6 +88,11 @@ li:hover {
 	display: block;
 	font-size: 60px;
 	color: #d2691e;
+}
+
+.logo {
+	display: block;
+	font-size: 60px;
 	-webkit-text-shadow: 3px 3px 6px #ccc;
 	-moz-text-shadow: 3px 3px 6px #ccc;
 	text-shadow: 3px 3px 6px #ccc;
@@ -163,7 +166,7 @@ li:hover {
 	height: auto;
 	display: inline;
 	background: #fafaf6;
-	background: rgba(250, 250, 246, .3);  
+	background: rgba(250, 250, 246, .3);
 	border: 5px solid #e9e9e4;
 	margin-right: 30px;
 	padding: 5px;
@@ -215,6 +218,7 @@ li:hover {
 	color: #000;
 	color: rgba(0, 0, 0, .5);
 }
+
 /* FOOTER */
 
 #primary-foot {
