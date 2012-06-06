@@ -6,6 +6,7 @@
         <link rel="stylesheet" href="/stylesheets/style.css" />
 	    <link href='http://fonts.googleapis.com/css?family=Fredoka+One' rel='stylesheet' type='text/css' />
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script src="//platform.twitter.com/widgets.js" charset="utf-8"></script> 
     </head>
     
     <body>   
@@ -24,17 +25,24 @@
                         <ul class="twitbox group">
                             {% for tweet in tweets %}
             				<li class="twit">
-                                <header>
+                                <blockquote class="twitter-tweet">
+                                    <p>
+                                        {{tweet.text|safe}}
+                                        &mdash; {{tweet.from_user_name}} (@{{tweet.from_user}}) <a href="https://twitter.com/TweetVagas/status/{{tweet.id_str}}" data-datetime="{{tweet.created_at}}">{{tweet.created_at|twitterdtformat}}</a>
+                                    </p>
+                                </blockquote>
+                                <!-- <header>
                                     <div class="twhen">{{tweet.created_at|twitterdtformat}}</div>
                                     <img src="{{tweet.profile_img}}"/>
                                     <a href="{{tweet.profile_link}}" target="_blank" class="profile_link">{{tweet.from_user_name}}</a>       
                                 </header>
                                 <article class="content">
                                     {{tweet.text|safe}}
-            					</article>    					
+            					</article> -->    					
             				</li>
                             {% endfor %}             
         	            </ul>
+                        <div class="error">{{error_msg}}</div>
                         <input class="button" type="submit" name="carregar_mais" value="Carregar Mais">                    
                     </section>
                     <section class="box">
@@ -42,7 +50,7 @@
                             <h1>Anuncie sua vaga</h1>
                         </header>
                         <textarea class="anuncio" name="anuncio" ></textarea>
-                        <input class="button" name="anunciar" type="submit" value="Enviar">               
+                        <input class="button" name="anunciar" type="submit" value="Enviar">                     
                     </section> 
                 </div>
             </form>   

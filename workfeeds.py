@@ -24,11 +24,13 @@ DEFAULT_MAX_TWEETS = 20
 TWEET_INC = 10
 
 class Tweet():
-	def __init__(self, created_at,from_user_name,profile_img,text,user):
+	def __init__(self, created_at,from_user_name,profile_img,text,user,id_str, from_user):
 		self.created_at = created_at
 		self.from_user_name = from_user_name	
 		self.profile_img = profile_img
 		self.text = text
+		self.id_str = id_str
+		self.from_user = from_user
 		self.profile_link = 'https://twitter.com/#!/%s' % user
 
 class Vaga(db.Model):
@@ -105,21 +107,23 @@ class Handler(webapp2.RequestHandler):
 			p = urllib2.urlopen(url)
 			c = p.read()
 			j = json.loads(c)
-			# logger.info("JSON: %s" % j)
+			logger.info("JSON: %s" % j)
 			tweets = []
 			i = 0
 			# logger.info("Numero de resultados no JSON: %s" % len(j['results']))
 			for c in j['results']:
 				created_at = c['created_at']
 				from_user_name = c['from_user_name']
+				from_user = c['from_user']
 				profile_img = c['profile_image_url']
 				text = c['text']
+				id_str = c['id_str']
 				urls = find_urls(text)
 				for u in urls:
 					text = text.replace(u,'<a href="%s" target="_blank">%s</a> ' % (u,u))
 				text = re.sub(r' @([A-Za-z0-9_]+)',user_link,text)
 				user = c['from_user']
-				tweet = Tweet(created_at,from_user_name,profile_img,text,user)
+				tweet = Tweet(created_at,from_user_name,profile_img,text,user,id_str,from_user)
 				tweets.append(tweet)
 				i = i + 1
 				if i >= self.max_tweets:
@@ -144,8 +148,8 @@ class Handler(webapp2.RequestHandler):
 		return max_tweets
 
 class MainPage(Handler):
-	def write_form(self, newers, filtro = ''):
-		self.render("front_template.html", tweets = newers, filtro = filtro)
+	def write_form(self, newers, filtro = '', error_msg = ''):
+		self.render("front_template.html", tweets = newers, filtro = filtro, error_msg = error_msg)
 
 	def get(self):
 		self.get_max_tweets()
@@ -153,11 +157,15 @@ class MainPage(Handler):
 		logger.info("Filtro entrada: %s" % filtro)
 		filtro = remover_acentos(filtro.encode('utf-8'))
 		logger.info("Filtro resultado: %s" % filtro)
+		tweets = []
 		if filtro:
 			tweets = self.retrieve_newers(filtro.split(" "))
 		else:
 			tweets = self.retrieve_newers()
-		self.write_form(tweets,filtro)
+		error_msg = ''
+		if not tweets:
+			error_msg = u'Sua busca nao retornou resultados.' 
+		self.write_form(tweets,filtro,error_msg)
 
 	def post(self):
 		if 'carregar_mais' in self.request.POST:
@@ -183,11 +191,15 @@ class MainPage(Handler):
 		logger.info("Filtro entrada: %s" % filtro)
 		filtro = remover_acentos(filtro.encode('utf-8'))
 		logger.info("Filtro resultado: %s" % filtro)
+		tweets = []
 		if filtro:
 			tweets = self.retrieve_newers(filtro.split(" "))
 		else:
 			tweets = self.retrieve_newers()
-		self.write_form(tweets,filtro)
+		error_msg = ''
+		if not tweets:
+			error_msg = "Sua busca nao retornou resultados." 
+		self.write_form(tweets,filtro,error_msg)
 
 class VagaHandler(Handler):
 	def write_form(self, vaga):

@@ -82,7 +82,10 @@ h1 {
   font-size: 30px;
   margin: 10px;
   color: #d2691e;
-  border-bottom: 1px solid #ecece9; }
+  border-bottom: 1px solid #ecece9;
+  -webkit-text-shadow: -1px -1px 1px white;
+  -moz-text-shadow: -1px -1px 1px white;
+  text-shadow: -1px -1px 1px white; }
 
 li:hover {
   background: #e9e9e4;
@@ -152,7 +155,7 @@ li:hover {
   width: 320px;
   margin: 10px;
   border: 2px solid #ccc;
-  background: #e9e9e4;
+  background: #fff;
   -webkit-border-radius: 8px;
   -moz-border-radius: 8px;
   -o-border-radius: 8px;
@@ -168,11 +171,19 @@ li:hover {
   width: 500px;
   height: auto;
   display: inline;
-  background: #fafaf6;
-  background: rgba(250, 250, 246, 0.3);
-  border: 5px solid #e9e9e4;
+  background: #d2691e;
+  /* #fafaf6; */
+  background: rgba(210, 105, 30, 0.05);
+  /* rgba(250, 250, 246, .3); */
+  border: 5px solid #d2691e;
+  /* #e9e9e4; */
+  border: 5px solid rgba(210, 105, 30, 0.5);
   margin-right: 30px;
-  padding: 5px; }
+  padding: 5px;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  -o-border-radius: 8px;
+  border-radius: 8px; }
 
 #blocks section:last-child {
   width: 350px;
@@ -189,9 +200,9 @@ li:hover {
 
 .vaga-desc {
   width: 440px;
-  height: 505px;
+  height: 496px;
   border: 2px solid #ccc;
-  background: #e9e9e4;
+  background: #fff;
   -webkit-border-radius: 8px;
   -moz-border-radius: 8px;
   -o-border-radius: 8px;
@@ -224,49 +235,9 @@ li:hover {
   background: rgba(149, 149, 137, 0.15);
   border: 1px solid #d2d2c4; }
 
-.twitbox {
-  list-style: none;
-  padding: 15px;
-  font-family: 'Verdana'; }
-
-.twitbox li {
-  padding: 10px; }
-
-.twit {
-  border-bottom: 1px dashed #ccc;
-  margin-bottom: 5px;
-  bottom: 0px; }
-
-.twit > img {
-  width: 50px;
-  height: 50px;
-  float: left;
-  margin: 0px 8px 8px 0px; }
-
-.profile_link {
-  font-size: 18px;
-  font-weight: bold; }
-
-.twit a {
-  font-weight: normal; }
-
-.content {
-  padding-left: 10px; }
-
-.description {
-  font-family: 'Verdana'; }
-
-.twitbox li a:hover {
-  text-decoration: underline; }
-
-.twhen {
-  float: right;
-  right: 0px;
-  bottom: 0px;
-  color: #999999;
-  font-family: georgia;
-  font-size: 14px;
-  font-style: italic; }
+.error {
+  text-align: center;
+  margin: 15px; }
 
 .vaga-box {
   list-style: none;
@@ -282,13 +253,12 @@ li:hover {
   padding: 15px; }
 
 .vaga-date {
-  margin: 5px 15px;
+  margin: 5px 20px;
   float: right;
-  color: #999999;
+  color: #d2691e;
   font-family: "Enriqueta-Regular", georgia;
   font-size: 14px;
-  font-style: italic; }
-
-.mais {
-  text-align: center;
-  padding: 5px; }
+  font-style: italic;
+  -webkit-text-shadow: -1px -1px 1px white;
+  -moz-text-shadow: -1px -1px 1px white;
+  text-shadow: -1px -1px 1px white; }
