@@ -49,6 +49,10 @@ blockquote, q {
   font-family: "Enriqueta-Bold";
   src: url("/fonts/Enriqueta-Bold.otf") format("opentype"); }
 
+@font-face {
+  font-family: "TK4F";
+  src: url("/fonts/TkachenkoSketch4F.ttf") format("truetype"); }
+
 #wrap {
   margin: 0 auto;
   width: 960px;
@@ -83,7 +87,6 @@ h1 {
 li:hover {
   background: #e9e9e4;
   -webkit-transition: all .3s linear;
-  -webkit-transition: all .3s linear;
   -moz-transition: all .3s linear;
   -o-transition: all .3s linear;
   transition: all .3s linear;
@@ -94,13 +97,15 @@ li:hover {
   li:hover a {
     font-size: 16px; }
 
-.logo {
+.logo a {
   display: block;
   font-size: 60px;
+  color: #d2691e;
   -webkit-text-shadow: 3px 3px 6px #ccc;
   -moz-text-shadow: 3px 3px 6px #ccc;
   text-shadow: 3px 3px 6px #ccc;
-  border-bottom: 0; }
+  border-bottom: 0;
+  text-decoration: none; }
 
 .search-box {
   float: left;
@@ -178,6 +183,34 @@ li:hover {
   width: 270px;
   text-align: left; }
 
+.vaga-desc {
+  width: 440px;
+  height: 505px;
+  border: 2px solid #ccc;
+  background: #e9e9e4;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  -o-border-radius: 8px;
+  border-radius: 8px; }
+
+.figure a {
+  text-decoration: none;
+  color: #000; }
+
+#promo {
+  font-family: "TK4F", Georgia, serif;
+  font-size: 30px; }
+
+#promo img {
+  float: left;
+  bottom: 0; }
+
+#powered {
+  font-style: italic;
+  font-size: 14px;
+  color: #000;
+  color: rgba(0, 0, 0, 0.5); }
+
 /* FOOTER */
 #primary-foot {
   width: 940px;
@@ -247,10 +280,8 @@ li:hover {
 
 .vaga-date {
   float: right;
-  right: 0px;
-  bottom: 0px;
   color: #999999;
-  font-family: georgia;
+  font-family: "Enriqueta-Regular", georgia;
   font-size: 14px;
   font-style: italic; }
 

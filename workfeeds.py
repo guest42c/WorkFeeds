@@ -99,7 +99,7 @@ class Handler(webapp2.RequestHandler):
 				for item in t_query:
 					url = url + u"%20" + item
 					logger.info(item)					
-			result_size = u'&rpp=100'
+			result_size = u'&rpp=1000'
 			url = url + result_size
 			logger.info(url)
 			p = urllib2.urlopen(url)
