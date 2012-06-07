@@ -235,6 +235,12 @@ li:hover {
   background: rgba(149, 149, 137, 0.15);
   border: 1px solid #d2d2c4; }
 
+#social {
+  position: fixed;
+  top: 0;
+  right: 0;
+  float: right; }
+
 .error {
   text-align: center;
   margin: 15px; }

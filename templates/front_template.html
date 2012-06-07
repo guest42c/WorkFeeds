@@ -6,19 +6,33 @@
         <link rel="stylesheet" href="/stylesheets/style.css" />
 	    <link href='http://fonts.googleapis.com/css?family=Fredoka+One' rel='stylesheet' type='text/css' />
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <script src="//platform.twitter.com/widgets.js" charset="utf-8"></script> 
+        <script src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+        <script>(function(d, s, id) {
+          var js, fjs = d.getElementsByTagName(s)[0];
+          if (d.getElementById(id)) return;
+          js = d.createElement(s); js.id = id;
+          js.src = "//connect.facebook.net/pt_BR/all.js#xfbml=1";
+          fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>      
     </head>
     
-    <body>   
-        <div id="wrap">     
+    <body>                
+        <div id="social">
+            <div class="fb-like" data-href="http://www.tweetvagas.com.br" data-send="false" data-layout="box_count" data-width="55" data-show-faces="false"></div>
+            <div id="linkedin">
+                <script src="//platform.linkedin.com/in.js" type="text/javascript"></script>
+                <script type="IN/Share" data-url="www.tweetvagas.com.br" data-counter="top"></script>
+            </div>
+        </div>   
+        <div id="wrap">
             <form method="post">
-                <header>
-                    <h1 class="logo"><a href="http://tweetvagas.appspot.com">Tweet Vagas</a></h1>
+                <header class="main">                    
+                    <h1 class="logo"><a href="http://www.tweetvagas.com.br">Tweet Vagas</a></h1>                         
                     <div class="search group">
                         <input class="search-box "name="filtro" type="text" value="{{filtro}}"/>
                         <input class="button" type="submit" value="Filtrar"/>
-                    </div>
-                </header>
+                    </div>                        
+                </header>                   
                 <div id="blocks">                
                     <section class="content box">                
                         <header><h1>Vagas</h1></header>    	      
